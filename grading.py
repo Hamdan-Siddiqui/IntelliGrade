@@ -1,4 +1,4 @@
-from google import genai
+import google.generativeai as genai
 from google.api_core import exceptions as google_exceptions
 import logging
 
