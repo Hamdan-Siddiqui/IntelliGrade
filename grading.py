@@ -6,7 +6,7 @@ import logging
 logging.basicConfig(filename='grading.log', level=logging.INFO)
 
 # Initialize the client
-client = genai.Client(api_key="AIzaSyCQ_oSjRh0GWY-NLIxWVs-gPL__o_88O0w")  # Replace with your actual API key
+client = genai.Client(api_key="YOUR_API_KEY")  # Replace with your actual API key
 
 def grade_submission(student_answer, reference_answer):
     """
