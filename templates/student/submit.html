@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Submit - {{ assignment.title }}{% endblock %}
+
+{% block content %}
+<div class="assignment-container">
+    <h1>{{ assignment.title }}</h1>
+    <div class="assignment-info">
+        <p>{{ assignment.description }}</p>
+        <p class="deadline" data-due="{{ assignment.due_date.isoformat() }}"></p>
+    </div>
+    
+    {% if submission %}
+    <div class="submission-results">
+        <h2>Your Submission</h2>
+        <div class="score-display">
+            <h3>Score: {{ submission.score }}/100</h3>
+        </div>
+        <div class="submission-content">
+            <h4>Your Answer:</h4>
+            <p>{{ submission.content }}</p>
+        </div>
+        <div class="feedback">
+            <h4>Feedback:</h4>
+            <p>{{ submission.feedback.replace('\n', '<br>')|safe }}</p>
+        </div>
+    </div>
+    {% else %}
+    <form method="POST" class="submission-form">
+        <div class="form-group">
+            <label for="answer">Your Answer</label>
+            <textarea id="answer" name="answer" required></textarea>
+        </div>
+        <button type="submit" class="btn-primary">Submit Assignment</button>
+    </form>
+    {% endif %}
+</div>
+{% endblock %}

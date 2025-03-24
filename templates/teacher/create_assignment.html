@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Create Assignment{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h1>Create New Assignment</h1>
+    <form method="POST">
+        <div class="form-group">
+            <label for="title">Assignment Title</label>
+            <input type="text" id="title" name="title" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="due_date">Due Date</label>
+            <input type="datetime-local" id="due_date" name="due_date" required>
+        </div>
+        <div class="form-group">
+            <label for="reference_answer">Reference Answer (for AI grading)</label>
+            <textarea id="reference_answer" name="reference_answer" required></textarea>
+        </div>
+        <button type="submit" class="btn-primary">Create Assignment</button>
+    </form>
+</div>
+{% endblock %}

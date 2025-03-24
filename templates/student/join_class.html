@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Join Class{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h1>Join a Class</h1>
+    <form method="POST">
+        <div class="form-group">
+            <label for="code">Class Code</label>
+            <input type="text" id="code" name="code" required placeholder="Enter the class code provided by your teacher">
+        </div>
+        <button type="submit" class="btn-primary">Join Class</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Teacher Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <h1>Your Classes</h1>
+    
+    <div class="class-grid">
+        {% for class in classes %}
+        <div class="class-card">
+            <h2>{{ class.name }}</h2>
+            <p>Class Code: <strong>{{ class.code }}</strong></p>
+            <div class="actions">
+                <a href="{{ url_for('create_assignment', class_id=class.id) }}" class="btn-secondary">Add Assignment</a>
+                <a href="{{ url_for('view_class', class_id=class.id) }}" class="btn-primary">View Class</a>
+            </div>
+        </div>
+        {% else %}
+        <p>You haven't created any classes yet.</p>
+        {% endfor %}
+    </div>
+    
+    <a href="{{ url_for('create_class') }}" class="btn-primary">Create New Class</a>
+</div>
+{% endblock %}

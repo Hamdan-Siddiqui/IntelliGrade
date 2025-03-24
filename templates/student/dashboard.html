@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Student Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <h1>Your Classes</h1>
+    
+    <div class="class-grid">
+        {% for enrollment in enrollments %}
+        <div class="class-card">
+            <h2>{{ enrollment.classroom.name }}</h2>
+            <p>Teacher: {{ enrollment.classroom.teacher.name }}</p>
+            <p>Class Code: <strong>{{ enrollment.classroom.code }}</strong></p>
+            <div class="actions">
+                <a href="{{ url_for('student_view_class', class_id=enrollment.classroom.id) }}" 
+                   class="btn-primary">
+                    View Assignments
+                </a>
+            </div>
+        </div>
+        {% else %}
+        <div class="no-classes">
+            <p>You haven't joined any classes yet.</p>
+            <a href="{{ url_for('join_class') }}" class="btn-primary">Join a Class</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

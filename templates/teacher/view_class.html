@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}{{ classroom.name }} - View Class{% endblock %}
+
+{% block content %}
+<div class="class-view">
+    <h1>{{ classroom.name }}</h1>
+    <p class="class-code">Class Code: {{ classroom.code }}</p>
+    
+    <div class="class-actions">
+        <a href="{{ url_for('create_assignment', class_id=classroom.id) }}" class="btn-primary">Create New Assignment</a>
+    </div>
+    
+    <h2>Assignments</h2>
+    {% if assignments %}
+    <div class="assignments-list">
+        {% for assignment in assignments %}
+        <div class="assignment-card">
+            <h3>{{ assignment.title }}</h3>
+            <p>{{ assignment.description }}</p>
+            <p>Due: {{ assignment.due_date.strftime('%B %d, %Y at %I:%M %p') }}</p>
+            <a href="{{ url_for('view_assignment_submissions', assignment_id=assignment.id) }}" class="btn-secondary">View Submissions</a>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>No assignments yet.</p>
+    {% endif %}
+    
+    <h2>Enrolled Students</h2>
+    {% if enrollments %}
+    <div class="students-list">
+        {% for enrollment in enrollments %}
+        <div class="student-card">
+            <p>{{ enrollment.student.name }}</p>
+            <p>{{ enrollment.student.email }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>No students enrolled yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

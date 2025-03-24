@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Submissions for {{ assignment.title }}{% endblock %}
+
+{% block content %}
+<div class="submissions-container">
+    <h1>Submissions for {{ assignment.title }}</h1>
+    <h2>Class: {{ classroom.name }}</h2>
+    
+    <div class="submissions-list">
+        {% if submissions %}
+            {% for submission in submissions %}
+            <div class="submission-card">
+                <h3>{{ submission.user.name }}</h3>
+                <p><strong>Score:</strong> {{ submission.score or "Not graded" }}</p>
+                <div class="submission-content">
+                    <h4>Submission:</h4>
+                    <p>{{ submission.content }}</p>
+                </div>
+                {% if submission.feedback %}
+                <div class="feedback">
+                    <h4>Feedback:</h4>
+                    <p>{{ submission.feedback }}</p>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No submissions yet.</p>
+        {% endif %}
+    </div>
+    
+    <a href="{{ url_for('view_class', class_id=classroom.id) }}" class="btn-primary">Back to Class</a>
+</div>
+{% endblock %}
